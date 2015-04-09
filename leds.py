@@ -14,11 +14,19 @@
 
 import time
 
-# ON-BOARD LEDs
+# ON-BOARD LEDs definitions
+
 led0 = "/sys/class/leds/beaglebone:green:usr0/brightness"
 led1 = "/sys/class/leds/beaglebone:green:usr1/brightness"
 led2 = "/sys/class/leds/beaglebone:green:usr2/brightness"
 led3 = "/sys/class/leds/beaglebone:green:usr3/brightness"
+
+# ==============================================================
+# Function:  led_on
+# Returns:   None
+# Arguments: num (LED number)
+# Summary:   Turns on on-board LED of the specified number
+# ==============================================================
 
 
 def led_on(num):
@@ -33,6 +41,13 @@ def led_on(num):
     else:
         print "Help Help, I'm being repressed! (LEDs number error)"
 
+# ==============================================================
+# Function:  led_off
+# Returns:   None
+# Arguments: num (LED number)
+# Summary:   Turns off on-board LED of the specified number
+# ==============================================================
+
 
 def led_off(num):
     if num == 0:
@@ -45,6 +60,14 @@ def led_off(num):
         open(led3, 'w').write("0")
     else:
         print "Help Help, I'm being repressed! (LEDs number error)"
+
+# ==============================================================
+# Function:  led_init
+# Returns:   None
+# Arguments: None
+# Summary:   Initializes on-board LEDs by turning each on and
+#            off in turn.
+# ==============================================================
 
 
 def led_init():

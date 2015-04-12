@@ -45,7 +45,11 @@ def motors_init():
     PWM.start(Motor2A, duty_forward, 60.0, 1)
     GPIO.setup(Motor1B, GPIO.OUT)		# Sets up pins as GPIO outputs
     GPIO.setup(Motor2B, GPIO.OUT)
+<<<<<<< HEAD
 print "Ready"
+=======
+    print "Ready"
+>>>>>>> origin/master
 
 
 # ==============================================================
@@ -62,9 +66,16 @@ def motors_forward(d):
     GPIO.output(Motor1B, GPIO.LOW)  # GPIO LOW is forward
     PWM.set_duty_cycle(Motor2A, d)
     GPIO.output(Motor2B, GPIO.LOW)
+    print "Forward"
     return d
-print "Forward"
 
+# ==============================================================
+# Function:  motors_reverse
+# Returns:   d (Duty cycle)
+# Arguments: d (Duty cycle)
+# Summary:   Sets duty cycle to d for both motors, sets GPIO
+#            to move reverse.
+# ==============================================================
 
 # ==============================================================
 # Function:  motors_reverse
@@ -80,6 +91,7 @@ def motors_reverse():
     GPIO.output(Motor1B, GPIO.HIGH)
     PWM.stop(Motor2A)
     GPIO.output(Motor2B, GPIO.HIGH)
+<<<<<<< HEAD
 print "Reverse"
 
 
@@ -87,34 +99,65 @@ print "Reverse"
 # Motors right
 # ==============================================================
 
-
-def motors_right(d):
-    PWM.set_duty_cycle(Motor1A, 7.5)
-    GPIO.output(Motor1B, GPIO.HIGH)
-    PWM.set_duty_cycle(Motor2A, d)
-    GPIO.output(Motor2B, GPIO.LOW)
-    PWM.stop(Motor1A)
-    PWM.stop(Motor2A)
-    return d
-    
-print "Right"
+=======
+    print "Reverse"
 
 
 # ==============================================================
+# Function:  motors_right
+# Returns:   None
+# Arguments: None
+# Summary:   Sets duty cycle to the same value for both motors,
+#            but in opposite directions to accomplish a zero-
+#            degree right turn.
+# ==============================================================
+>>>>>>> origin/master
+
+def motors_right():
+    PWM.set_duty_cycle(Motor1A, 7.5)
+    GPIO.output(Motor1B, GPIO.HIGH)
+    PWM.set_duty_cycle(Motor2A, 7.5)
+    GPIO.output(Motor2B, GPIO.LOW)
+    PWM.stop(Motor1A)
+    PWM.stop(Motor2A)
+    print "Right"
+
+
+# ==============================================================
+<<<<<<< HEAD
 # Motors left
 # ==============================================================
 
 
 def motors_left(d):
     PWM.set_duty_cycle(Motor1A, d)
+=======
+# Function:  motors_left
+# Returns:   None
+# Arguments: None
+# Summary:   Sets duty cycle to the same value for both motors,
+#            but in opposite directions to accomplish a zero-
+#            degree left turn.
+# ==============================================================
+
+
+def motors_left():
+    PWM.set_duty_cycle(Motor1A, 7.5)
+>>>>>>> origin/master
     GPIO.output(Motor1B, GPIO.LOW)
-    PWM.set_duty_cycle(Motor2A, d)
+    PWM.set_duty_cycle(Motor2A, 7.5)
     GPIO.output(Motor2B, GPIO.HIGH)
-    return d
-print "Left"
+    print "Left"
 
 # ==============================================================
+<<<<<<< HEAD
 # Motors Stop
+=======
+# Function:  motors_stop
+# Returns:   None
+# Arguments: None
+# Summary:   Stops motors
+>>>>>>> origin/master
 # ==============================================================
 
 
@@ -126,6 +169,7 @@ def motors_stop():
 print "Stop"
 
 # ==============================================================
+<<<<<<< HEAD
 # Motors kill
 # ==============================================================
 
@@ -138,6 +182,15 @@ print "Signals Killed"
 # Motors right control
 # ==============================================================
 
+=======
+# Function:  motors_right_control
+# Returns:   None
+# Arguments: dut (Duty cycle), direction)
+# Summary:   Direct control of right motor, in case a program
+#            accessing this library needs to do so
+# ==============================================================
+
+>>>>>>> origin/master
 
 def motors_right_control(dut, direction):
     if direction == "forward":
@@ -150,7 +203,15 @@ def motors_right_control(dut, direction):
         print "Direction error"
 
 # ==============================================================
+<<<<<<< HEAD
 # Motors left control
+=======
+# Function:  motors_left_control
+# Returns:   None
+# Arguments: dut (Duty cycle), direction)
+# Summary:   Direct control of left motor, in case a program
+#            accessing this library needs to do so
+>>>>>>> origin/master
 # ==============================================================
 
 
@@ -163,6 +224,17 @@ def motors_left_control(dut, direction):
         GPIO.output(Motor2B, GPIO.HIGH)
     else:
         print "Direction Error"
+<<<<<<< HEAD
+=======
+
+# ==============================================================
+# Function:  motors_cleanup
+# Returns:   None
+# Arguments: None
+# Summary:   Stops all control of motors and servos
+# ==============================================================
+
+>>>>>>> origin/master
 
 # ==============================================================
 # Motors Cleanup

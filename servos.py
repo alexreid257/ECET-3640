@@ -24,6 +24,14 @@ elbow_duty = 5.5      # Elbow starts at 5.5% duty cycle
 shoulder_duty = 9.5   # Shoulder starts at 9.5% duty cycle
 claw_duty = 13.0      # Claw starts open at 13% duty cycle
 
+# ==============================================================
+# Function:  servo_init
+# Returns:   None
+# Arguments: None
+# Summary:   Initializes PWM for servos on predefined pins,
+#            at 60 Hz.
+# ==============================================================
+
 
 def servo_init():
     PWM.start(shoulder, shoulder_duty, 60.0)
@@ -31,6 +39,20 @@ def servo_init():
     PWM.start(claw, claw_duty, 60.0)
     print "Servos Initialized"
     time.sleep(2)
+
+# ==============================================================
+# Function:  shoulder_move
+# Returns:   duty (Duty cycle)
+# Arguments: direction, degrees, duty
+# Summary:   Moves shoulder servo either up or down, by the
+#            number of degrees specified. The "duty" argument
+#            should be the current shoulder_duty. If a program
+#            imports servos.py as is, the call for this function
+#            would look like this:
+#
+# servos.shoulder_duty = servos.shoulder_move("up", 15, servos.shoulder_duty)
+#
+# ==============================================================
 
 
 def shoulder_move(direction, degrees, duty):
@@ -50,6 +72,20 @@ def shoulder_move(direction, degrees, duty):
     else:
         print "OH GOD MY SHOULDER (Shoulder Direction Error)"
 
+# ==============================================================
+# Function:  elbow_move
+# Returns:   duty (Duty cycle)
+# Arguments: direction, degrees, duty
+# Summary:   Moves elbow servo either out or in, by the
+#            number of degrees specified. The "duty" argument
+#            should be the current servo_duty. If a program
+#            imports servos.py as is, the call for this function
+#            would look like this:
+#
+# servos.elbow_duty = servos.elbow_move("up", 15, servos.elbow_duty)
+#
+# ==============================================================
+
 
 def elbow_move(direction, degrees, duty):
     duty_change = degrees * 9 / 5  # Convert from degrees to duty cycle
@@ -63,10 +99,17 @@ def elbow_move(direction, degrees, duty):
         for x in range(0, duty_change):
             PWM.set_duty_cycle(elbow, duty)
             time.sleep(0.1)
-            duty == 0.1
+            duty += 0.1
         return duty
     else:
         print "My only regret... is that I have... boneitis. (Elbow Direction Error)"
+
+# ==============================================================
+# Function:  claw_move
+# Returns:   claw status (open/closed)
+# Arguments: direction
+# Summary:   Either opens or closes claw.
+# ==============================================================
 
 
 def claw_move(direction):
